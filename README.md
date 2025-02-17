@@ -5,3 +5,6 @@ Implementation of operation-centric queues which support standardized interfaces
 Only support push_back and pop_front operations.
 
 ## V2
+
+## Testing
+- Note: to dump multi-dimensional arrays (including unpacked arrays) with VCS, the `+vcs+dumparrays` plusarg option must be used when calling the executable test

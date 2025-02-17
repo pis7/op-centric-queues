@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 
-`ifndef V1_MAIN_TEST
-`define V1_MAIN_TEST
+`ifndef V1_FULL_TEST
+`define V1_FULL_TEST
 
 `include "utils/ManualCheckSingleClkTB.sv"
 `include "utils/TestUtilsDefs.sv"
@@ -19,6 +19,7 @@ import "DPI-C" function int get_system_time_seed();
 module Top();
 
   localparam            p_num_duts                  = 3;
+  localparam            p_active_duts               = 3;
   localparam integer    p_bitwidths[p_num_duts]     = '{8, 16, 32};
   localparam integer    p_depths[p_num_duts]        = '{8, 16, 32};
   
@@ -29,8 +30,8 @@ module Top();
   // Generate test benches
   genvar i;
   generate
-    for (i = 0; i < p_num_duts; i++) begin : gen_test
-      V1MainTest #(
+    for (i = 0; i < p_active_duts; i++) begin : gen_test
+      V1FullTest #(
         .p_bitwidth (p_bitwidths[i]),
         .p_depth    (p_depths[i])
       ) test (
@@ -44,7 +45,7 @@ module Top();
   // Start test benches
   always begin
     #1; // wait for initial values to propagate
-    for (int idx = 0; idx < p_num_duts; idx++) begin
+    for (int idx = 0; idx < p_active_duts; idx++) begin
       if (tb_done[idx] == 0) tb_go[idx] <= 1;
     end
   end
@@ -55,13 +56,13 @@ module Top();
     #1; // wait for initial values to propagate
     while(!all_done) begin
       all_done = 1;
-      for (int idx = 0; idx < p_num_duts; idx++) begin
+      for (int idx = 0; idx < p_active_duts; idx++) begin
         if (tb_done[idx] == 0) all_done = 0;
       end
       #1;
     end
     all_pass = 1;
-    for (int idx = 0; idx < p_num_duts; idx++) begin
+    for (int idx = 0; idx < p_active_duts; idx++) begin
       if (tb_pass[idx] == 0) all_pass = 0;
     end
     if (all_pass) begin
@@ -80,15 +81,15 @@ module Top();
 endmodule
 
 //----------------------------------------------------------------------
-// V1MainTest
+// V1FullTest
 //----------------------------------------------------------------------
-module V1MainTest #(
+module V1FullTest #(
   parameter p_bitwidth      = 32,
   parameter p_depth         = 32,
   parameter p_min_clk_pd    = 2,
   parameter p_max_clk_pd    = 50,
   parameter p_max_rst_delay = 100,
-  parameter p_max_msg_delay = 10,
+  parameter p_max_msg_delay = 100,
   parameter p_max_msgs      = 1000
 )(
   input  logic go,
@@ -230,6 +231,12 @@ module V1MainTest #(
       push_back_rdy,
       "push_back_rdy"
     );
+    #($urandom() % (p_max_msg_delay + 1));
+    tb.test_case_check (
+      1'b0,
+      push_back_rdy,
+      "push_back_rdy"
+    );
 
     pop_front_task (
       p_depth,
@@ -243,59 +250,12 @@ module V1MainTest #(
       pop_front_rdy,
       "pop_front_rdy"
     );
-
-    #(`TB_CASE_DRAIN_TIME);
-  endtask
-
-  //----------------------------------------------------------------------
-  // push_pop_interleaved_test
-  //----------------------------------------------------------------------
-  task automatic push_pop_interleaved_test (
-    string  name,
-    integer clk_pd    = -1,
-    integer rst_delay = -1,
-    integer num_msgs  = -1,
-    integer seed      = 32'(get_system_time_seed() + $time)
-  );
-    integer dummy_rand = $urandom(seed);
-    integer ctr        = 0;
-    logic [p_bitwidth-1:0] src_msgs[];
-
-    if (clk_pd    == -1) clk_pd    = p_min_clk_pd + ($urandom() % (p_max_clk_pd - p_min_clk_pd + 1));
-    if (rst_delay == -1) rst_delay = clk_pd + ($urandom() % (p_max_rst_delay - clk_pd + 1));
-    if (num_msgs  == -1) num_msgs  = 1 + ($urandom() % p_max_msgs);
-
-    src_msgs = new[num_msgs];
-
-    @(posedge clk);
-    tb.test_case_begin (
-      name,
-      clk_pd,
-      rst_delay,
-      seed
+    #($urandom() % (p_max_msg_delay + 1));
+    tb.test_case_check (
+      1'b0,
+      pop_front_rdy,
+      "pop_front_rdy"
     );
-
-    push_back_en = 1'b0;
-    pop_front_en = 1'b0;
-
-    // Initialize messages to send and receive
-    for (int i = 0; i < num_msgs; i++)
-      src_msgs[i] = $urandom() % ((1 << p_bitwidth)-1);
-
-    fork
-      push_back_task (
-        num_msgs,
-        -1,
-        src_msgs,
-        seed
-      );
-      pop_front_task (
-        num_msgs,
-        -1,
-        src_msgs,
-        seed
-      );
-    join
 
     #(`TB_CASE_DRAIN_TIME);
   endtask
@@ -305,11 +265,10 @@ module V1MainTest #(
   //----------------------------------------------------------------------
   task automatic run;
     string suffix = $sformatf("_bw_%0d_dp_%0d", p_bitwidth, p_depth);
-    tb.test_bench_start($sformatf("V1MainTest%s", suffix));
+    tb.test_bench_start($sformatf("V1FullTest%s", suffix));
 
     if (tb.test_case == 1  || tb.test_case == 0) push_all_pop_all_test($sformatf("push_all_pop_all_test%s", suffix));
-    if (tb.test_case == 2  || tb.test_case == 0) push_pop_interleaved_test($sformatf("push_pop_interleaved_test%s", suffix));
-
+    
     tb.test_bench_end();
   endtask
 

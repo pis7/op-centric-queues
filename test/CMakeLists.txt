@@ -143,7 +143,8 @@ add_custom_target(coverage)
 # ------------------------------------------------------------------------------
 
 # RTL tests
-add_rtl_test_target(v1/V1Main-test)
+add_rtl_test_target(v1/v1Full-test)
+add_rtl_test_target(v2/v2Full-test)
 
 # Add dependencies -------------------------------------------------------------
 add_dependencies(check ${TEST_TARGETS})
