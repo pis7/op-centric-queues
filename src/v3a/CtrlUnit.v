@@ -306,6 +306,8 @@ module v3a_CtrlUnit
       for (int i = 0; i < p_depth; i++) begin
         wr_data[i]    = 1'b0;
         shift_en[i]   = `SHFT_IDLE;
+        set_occ[i]    = 1'b0;
+        clr_occ[i]    = 1'b0;
       end
       wr_data_in = p_bitwidth'(0);
     end else if (enq_back_will_fire) begin

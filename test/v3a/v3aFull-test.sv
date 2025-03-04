@@ -27,7 +27,7 @@ module Top();
     string               saif_filename;
   `else
     localparam           p_num_duts                  = 4;
-    localparam           p_active_duts               = 1;
+    localparam           p_active_duts               = 4;
     localparam integer   p_depths[p_num_duts]        = '{8, 16, 32, `TOP_DEPTH};
     localparam integer   p_chanwidths[p_num_duts]    = '{8, 16, 32, `TOP_CHANWIDTH};
   `endif

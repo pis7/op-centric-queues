@@ -37,8 +37,6 @@ module v3a_MultiInReg
   // Data logic
   //----------------------------------------------------------------------
 
-  logic occ;
-
   always @(posedge clk) begin
     if (rst) begin
       data_out <= p_bitwidth'(0);
