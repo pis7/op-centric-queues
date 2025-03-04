@@ -70,7 +70,7 @@ module v2_CtrlUnit
 
   logic enq_back_en, enq_front_en, deq_front_en, deq_back_en;
 
-  task op_en (
+  task automatic op_en (
     input logic l_enq_back_en,
     input logic l_enq_front_en,
     input logic l_deq_back_en,

@@ -3,15 +3,16 @@
 //========================================================================
 // Toplevel module connected the control unit and the datapath
 
-`ifndef OP_CENTRIC_QUEUES_V2_TOP_V
-`define OP_CENTRIC_QUEUES_V2_TOP_V
+`ifndef V2_OP_CENTRIC_QUEUE_V
+`define V2_OP_CENTRIC_QUEUE_V
 
 `include "v2/CtrlUnit.v"
 `include "v2/RegCollection.v"
+`include "common_defs.v"
 
-module OpCentricQueue # (
-  parameter p_depth    = 32,
-  parameter p_bitwidth = 32
+module v2_OpCentricQueue # (
+  parameter p_depth    = `TOP_DEPTH,
+  parameter p_bitwidth = `TOP_CHANWIDTH
 )(
   input logic clk,
   input logic rst,

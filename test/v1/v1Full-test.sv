@@ -5,7 +5,8 @@
 
 `include "utils/ManualCheckSingleClkTB.sv"
 `include "utils/TestUtilsDefs.sv"
-`include "v1/OpCentricQueue.v"
+`include "v1/v1_OpCentricQueue.v"
+`include "common_defs.v"
 
 `ifndef TIME_SEED
 `define TIME_SEED
@@ -18,10 +19,18 @@ import "DPI-C" function int get_system_time_seed();
 /*verilator coverage_off*/
 module Top();
 
-  localparam            p_num_duts                  = 3;
-  localparam            p_active_duts               = 3;
-  localparam integer    p_bitwidths[p_num_duts]     = '{8, 16, 32};
-  localparam integer    p_depths[p_num_duts]        = '{8, 16, 32};
+  `ifdef FFGL_BA
+    localparam           p_num_duts                  = 1;
+    localparam           p_active_duts               = 1;
+    localparam integer   p_depths[p_num_duts]        = '{`TOP_DEPTH};
+    localparam integer   p_bitwidths[p_num_duts]     = '{`TOP_CHANWIDTH};
+    string               saif_filename;
+  `else
+    localparam           p_num_duts                  = 4;
+    localparam           p_active_duts               = 4;
+    localparam integer   p_depths[p_num_duts]        = '{8, 16, 32, `TOP_DEPTH};
+    localparam integer   p_bitwidths[p_num_duts]     = '{8, 16, 32, `TOP_CHANWIDTH};
+  `endif
   
   logic tb_go  [0:p_num_duts-1];
   logic tb_done[0:p_num_duts-1];
@@ -53,6 +62,13 @@ module Top();
   // Wait for all test benches to finish and check results
   initial begin
     bit all_done = 0, all_pass = 0;
+    `ifdef FFGL_BA
+      if (!$value$plusargs("dump-saif=%s", saif_filename)) saif_filename = "";
+      if (saif_filename != "") begin
+        $set_toggle_region(Top.gen_test[0].test.dut);
+        $toggle_start();
+      end
+    `endif
     #1; // wait for initial values to propagate
     while(!all_done) begin
       all_done = 1;
@@ -65,6 +81,12 @@ module Top();
     for (int idx = 0; idx < p_active_duts; idx++) begin
       if (tb_pass[idx] == 0) all_pass = 0;
     end
+  `ifdef FFGL_BA
+    if (saif_filename != "") begin
+      $toggle_stop();
+      $toggle_report(saif_filename, 1e-9, Top.gen_test[0].test.dut);
+    end
+  `endif
     if (all_pass) begin
       $write($sformatf("\n\n%s----------------------------%s\n", `CLI_GREEN, `CLI_RESET));
       $write($sformatf("%s------ OVERALL PASSED ------%s\n", `CLI_GREEN, `CLI_RESET));
@@ -121,7 +143,7 @@ module V1FullTest #(
   //----------------------------------------------------------------------
   // DUT instance
   //----------------------------------------------------------------------
-  OpCentricQueue #(
+  v1_OpCentricQueue #(
     .p_depth    (p_depth),
     .p_bitwidth (p_bitwidth)
   ) dut ( .* );

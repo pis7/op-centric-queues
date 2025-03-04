@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layer-properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M1 - 31/0</name>
+        <source>31/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M2 - 32/0</name>
+        <source>32/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M3 - 33/0</name>
+        <source>33/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M4 - 34/0</name>
+        <source>34/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M5 - 35/0</name>
+        <source>35/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M6 - 36/0</name>
+        <source>36/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M7 - 37/0</name>
+        <source>37/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M8 - 38/40</name>
+        <source>38/40</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M9 - 39/60</name>
+        <source>39/60</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>AP - 74/0</name>
+        <source>74/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M1 - FILL 31/1</name>
+        <source>31/1</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M2 - FILL 32/1</name>
+        <source>32/1</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M3 - FILL 33/1</name>
+        <source>33/1</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M4 - FILL 34/1</name>
+        <source>34/1</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M5 - FILL 35/1</name>
+        <source>35/1</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M6 - FILL 36/1</name>
+        <source>36/1</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M7 - FILL 37/1</name>
+        <source>37/1</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M8 - FILL 38/41</name>
+        <source>38/41</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M9 - FILL 39/61</name>
+        <source>39/61</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>AP - FILL 74/1</name>
+        <source>74/1</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>VIA1 - 51/0</name>
+        <source>51/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>VIA2 - 52/0</name>
+        <source>52/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>VIA3 - 53/0</name>
+        <source>53/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>VIA4 - 54/0</name>
+        <source>54/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>VIA5 - 55/0</name>
+        <source>55/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>VIA6 - 56/0</name>
+        <source>56/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>VIA7 - 57/40</name>
+        <source>57/40</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>VIA8 - 58/40</name>
+        <source>58/40</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>RV - 85/0</name>
+        <source>85/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>AP/PIN 126/0</name>
+        <source>126/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M1/PIN 131/0</name>
+        <source>131/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M2/PIN 132/0</name>
+        <source>132/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M3/PIN 133/0</name>
+        <source>133/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M4/PIN 134/0</name>
+        <source>134/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M5/PIN 135/0</name>
+        <source>135/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M6/PIN 136/0</name>
+        <source>136/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M7/PIN 137/0</name>
+        <source>137/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M8/PIN 138/0</name>
+        <source>138/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M9/PIN 139/0</name>
+        <source>139/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>M10/PIN 140/0</name>
+        <source>140/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>Sealring 162/0</name>
+        <source>162/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>SDI 122/0</name>
+        <source>122/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>ESDIMP 189/0</name>
+        <source>189/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>WBDMY 157/0</name>
+        <source>157/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>CDUDMY 165/0</name>
+        <source>165/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>CSRDMY 166/0</name>
+        <source>166/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>RH 117/0</name>
+        <source>117/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>RPDMY 115/0</name>
+        <source>115/0</source>
+    </properties>
+    <properties>
+        <visible>true</visible>
+        <valid>true</valid>
+        <name>LMARK 109/0</name>
+        <source>109/0</source>
+    </properties>
+</layer-properties>
