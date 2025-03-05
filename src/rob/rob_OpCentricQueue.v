@@ -7,7 +7,7 @@
 `define ROB_OP_CENTRIC_QUEUE_V
 
 `include "rob/CtrlUnit.v"
-`include "rob/RegCollection.v"
+`include "rob/Dpath.v"
 `include "common_defs.v"
 
 module rob_OpCentricQueue # (
@@ -54,14 +54,14 @@ module rob_OpCentricQueue # (
   );
 
   //----------------------------------------------------------------------
-  // Register collection
+  // Datapath register collection
   //----------------------------------------------------------------------
 
-  rob_RegCollection #(
+  rob_Dpath #(
     .p_depth     (p_depth),
     .p_ptrwidth  (p_ptrwidth),
     .p_bitwidth  (p_bitwidth)
-  ) reg_collection (
+  ) dpath (
     .*
   );
 

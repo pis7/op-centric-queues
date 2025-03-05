@@ -1,14 +1,14 @@
 //========================================================================
-// RobReg.v
+// OccReg.v
 //========================================================================
-// Storage element for the queue with a given ID
+// Storage element for the queue with an occupied bit
 
-`ifndef ROB_REG_V
-`define ROB_REG_V
+`ifndef ROB_OCC_REG_V
+`define ROB_OCC_REG_V
 
 `include "common_defs.v"
 
-module rob_Reg
+module rob_OccReg
 #(
   parameter p_ptrwidth  = 5,
   parameter p_bitwidth  = 32
@@ -25,7 +25,6 @@ module rob_Reg
   output logic [p_bitwidth-1:0] data_out,
   input  logic                  clr_occ,
   output logic                  occ
-
 );
 
   //----------------------------------------------------------------------

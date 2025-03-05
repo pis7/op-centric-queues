@@ -45,6 +45,8 @@ module rob_CtrlUnit
 );
 
   logic [p_ptrwidth-1:0] deq_ptr;
+  logic ins_and_deq;
+  assign ins_and_deq = deq_ptr == ins_sn_in && ins_en;
 
   //----------------------------------------------------------------------
   // Dequeue pointer update sequential logic
@@ -53,43 +55,39 @@ module rob_CtrlUnit
   always_ff @(posedge clk) begin
     if (rst) begin
       deq_ptr <= {p_ptrwidth{1'b0}};
-    end else begin
-      if ((ins_sn_in == deq_ptr && ins_en) || occ[deq_ptr]) deq_ptr <= deq_ptr + p_ptrwidth'(1);
-    end
+    end else if (occ[deq_ptr] || ins_and_deq) deq_ptr <= deq_ptr + p_ptrwidth'(1);
   end
 
   //----------------------------------------------------------------------
-  // Data out and completion sequential logic
+  // Data out combinational logic
   //----------------------------------------------------------------------
-
-  task op_cpl (
-    input logic l_deq_front_cpl,
-    input logic l_ins_cpl
-  );
-    deq_front_cpl = l_deq_front_cpl;
-    ins_cpl       = l_ins_cpl;
-  endtask;
 
   always_comb begin
     if (rst) begin
-      op_cpl(1'b0, 1'b0);
       deq_front_data = p_bitwidth'(0);
     end else begin
-      if (occ[deq_ptr]) begin // dequeue committed instruction if front pointer is occupied
-        op_cpl(1'b1, ins_en);
-        deq_front_data = data_out[deq_ptr];
-      end else if (deq_ptr == ins_sn_in && ins_en) begin // passthrough instruction to dequeue if enqueuing to same index as front pointer
-        op_cpl(1'b1, ins_en);
-        deq_front_data = ins_data_in;
-      end else begin
-        op_cpl(1'b0, ins_en);
-        deq_front_data = p_bitwidth'(0);
-      end
+      if (occ[deq_ptr])     deq_front_data = data_out[deq_ptr];
+      else if (ins_and_deq) deq_front_data = ins_data_in;
+      else                  deq_front_data = p_bitwidth'(0);
     end
   end
 
   //----------------------------------------------------------------------
-  // Data signal combinational logic
+  // Operation completion combinational logic
+  //----------------------------------------------------------------------
+
+  always_comb begin
+    if (rst) begin
+      ins_cpl = 1'b0;
+      deq_front_cpl = 1'b0;
+    end else begin
+      ins_cpl = ins_en;
+      deq_front_cpl = (occ[deq_ptr] || ins_and_deq);
+    end
+  end
+
+  //----------------------------------------------------------------------
+  // Register control combinational logic
   //----------------------------------------------------------------------
 
   always_comb begin

@@ -1,14 +1,14 @@
 //========================================================================
-// RegCollection.v
+// Dpath.v
 //========================================================================
 // Collection of queue registers which represents the FIFO
 
-`ifndef ROB_REG_COLLECTION_V
-`define ROB_REG_COLLECTION_V
+`ifndef ROB_DPATH_V
+`define ROB_DPATH_V
 
-`include "rob/RobReg.v"
+`include "rob/OccReg.v"
 
-module rob_RegCollection
+module rob_Dpath
 #(
   parameter p_depth     = 32,
   parameter p_ptrwidth  = $clog2(p_depth),
@@ -36,7 +36,7 @@ module rob_RegCollection
   generate
     for(i = 0; i < p_depth; i++) begin : reg_gen
 
-      rob_Reg #(
+      rob_OccReg #(
         .p_ptrwidth  (p_ptrwidth),
         .p_bitwidth  (p_bitwidth)
       ) dpath_reg (
@@ -49,6 +49,7 @@ module rob_RegCollection
         .occ               (occ[i])
       );
     end
+
   endgenerate
 
 endmodule

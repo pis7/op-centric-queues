@@ -229,21 +229,18 @@ module RobFullTest #(
 
     // Dequeue message at dequeue pointer and check for passthrough
     fork
-      begin
-        insert_task (
-          -1,
-          src_msgs[p_depth-1],
-          sns[p_depth-1],
-          seed
-        );
-      end
-      begin
-        @(negedge clk);
-        #1;
-        tb.test_case_check(src_msgs[p_depth-1], deq_front_data, "deq_front_data");
-        tb.test_case_check(1'b1, deq_front_cpl, "deq_front_cpl");
-      end
-    join_any
+      insert_task (
+        -1,
+        src_msgs[p_depth-1],
+        sns[p_depth-1],
+        seed
+      );
+    join_none
+
+    @(negedge clk);
+    #1;
+    tb.test_case_check(src_msgs[p_depth-1], deq_front_data, "deq_front_data");
+    tb.test_case_check(1'b1, deq_front_cpl, "deq_front_cpl");
 
     // Check remaining dequeued messages are correct (no backpressure)
     for (int i = p_depth-2; i >= 0; i--) begin
