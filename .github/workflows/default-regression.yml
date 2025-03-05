@@ -13,21 +13,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install verilator
-        run: |
-          wget --progress=dot:giga https://github.com/pymtl/verilator-ci-cache/raw/master/verilator-github-actions-5.026.tar.gz
-          echo $PWD
-          whoami
-          tar -C ${HOME} -xzf verilator-github-actions-5.026.tar.gz
-          echo "${HOME}/verilator/bin" >> $GITHUB_PATH
-          echo "PKG_CONFIG_PATH=${HOME}/verilator/share/pkgconfig:${PKG_CONFIG_PATH}" >> $GITHUB_ENV
-      
-      - name: Check verilator
-        run: |
-          which verilator
-          verilator --version
-          pkg-config --modversion verilator
-          pkg-config --cflags verilator
+      - name: setup-verilator
+        uses: veryl-lang/setup-verilator@v1.0.2
 
       - name: Build and run all tests
         run: |
