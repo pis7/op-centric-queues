@@ -13,4 +13,7 @@
 `define TOP_CHANWIDTH 32
 `define TOP_DEPTH     64
 
+`define ROB_BITWIDTH  32
+`define ROB_DEPTH     4
+
 `endif 

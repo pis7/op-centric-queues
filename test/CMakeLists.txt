@@ -208,18 +208,21 @@ add_ba_test_target(v1/v1Full-test)
 add_ba_test_target(v2/v2Full-test)
 add_ba_test_target(v3/v3Full-test)
 add_ba_test_target(v3a/v3aFull-test)
+add_ba_test_target(rob/robFull-test)
 
 # FFGL tests
 add_ffgl_test_target(v1/v1Full-test)
 add_ffgl_test_target(v2/v2Full-test)
 add_ffgl_test_target(v3/v3Full-test)
 add_ffgl_test_target(v3a/v3aFull-test)
+add_ffgl_test_target(rob/robFull-test)
 
 # RTL tests
 add_rtl_test_target(v1/v1Full-test)
 add_rtl_test_target(v2/v2Full-test)
 add_rtl_test_target(v3/v3Full-test)
 add_rtl_test_target(v3a/v3aFull-test)
+add_rtl_test_target(rob/robFull-test)
 
 # Add dependencies -------------------------------------------------------------
 add_dependencies(check ${TEST_TARGETS})

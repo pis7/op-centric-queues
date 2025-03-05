@@ -46,6 +46,7 @@ addStripe -nets {VSS VDD} \
 file mkdir outputs/reports/place
 place_opt_design -out_dir outputs/reports/place -prefix place
 addTieHiLo -cell {TIEH  TIEL}
+assignIoPins -pin *
 
 # CTS --------------------------------------------------------------------------
 file mkdir outputs/reports/CTS

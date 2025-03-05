@@ -14,5 +14,8 @@ Implementation of operation-centric queues which support standardized interfaces
 ## V3
 - Add support for upd and del operations using tags allocated during enq operations
 
+## ROB
+- Specialied op-centric queue that implements a reorder buffer that only has insert and delete operations
+
 ## Testing
 - Note: to dump multi-dimensional arrays (including unpacked arrays) with VCS, the `+vcs+dumparrays` plusarg option must be used when calling the executable test
